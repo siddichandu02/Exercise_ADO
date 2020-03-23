@@ -1,0 +1,56 @@
+﻿
+@model System.Data.DataTable;
+@*@using System.Data*@
+@{
+    ViewData["Title"] = "Select";
+}
+@*<table>
+        <tr>
+            <th>FriendId</th>
+            <th>FriendName</th>
+            <th>Place</th>
+        </tr>
+        @foreach (var friend in Model)
+        {
+            <tr>
+                <td>@friend.FriendId</td>
+                <td>@friend.FriendName</td>
+                <td>@friend.Place</td>
+            </tr>
+        }
+    </table>*@
+
+
+<div>
+    @if (Model != null)
+    {
+        <table border="1">
+            <thead>
+                <tr>
+                    @foreach (System.Data.DataColumn col in Model.Columns)
+                    {
+                        <th>@col.Caption</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (System.Data.DataRow row in Model.Rows)
+                {
+                    <tr>
+                        @foreach (var cell in row.ItemArray)
+                        {
+                            if (cell != null)
+                            {
+                                <td>@cell.ToString()</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
